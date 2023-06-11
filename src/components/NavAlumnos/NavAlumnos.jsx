@@ -1,9 +1,9 @@
 import {Link, Route,Routes} from "react-router-dom"
-import ListAlumnos from "../Alumnos/ListAlumnos"
+
 
 const NavAlumnos = () => {
   return (
-    <>
+ 
         <nav>
             <ul>
                 <li><Link to="/alumnos/add">Añadir alumno</Link></li>
@@ -13,10 +13,7 @@ const NavAlumnos = () => {
 
             </ul>
         </nav>
-        <Routes>
-             <Route path="/alumnos/list" element={<ListAlumnos/>}/>
-        </Routes>
-    </>
+   
     )
 }
 

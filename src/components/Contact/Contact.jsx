@@ -8,7 +8,7 @@ const initial_state={
 }
 const Contact = () => {
     const [formState, setFormState] = useState(initial_state);
-    const handleInput =(event)=>{
+ const handleInput =(event)=>{
         const {name, value} = event.target
         setFormState({...formState, [name]:value})
 

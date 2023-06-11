@@ -1,0 +1,30 @@
+.c-alumnos__ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.c-alumnos__li{
+    border: 1px solid black;
+    min-width: 20%;
+}
+.c-alumnos__form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap:10px;
+
+}
+.c-alumnos__select{
+    width: 20%;
+}
+.c-alumnos__span{
+    border:1px solid;
+}
+.c-alumnos__asignaturas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+}
