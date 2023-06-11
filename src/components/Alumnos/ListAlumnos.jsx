@@ -20,7 +20,8 @@ useEffect(()=>{
 
 const item = dataAlumnos.map((alumn,i)=>{
   console.log(alumn.curso[0])
-  
+    
+
     return (
       <li key={i} className="c-alumnos__li">
         <h3>{alumn.nombre} {alumn.apellidos}</h3>
