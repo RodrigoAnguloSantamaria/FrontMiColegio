@@ -22,6 +22,8 @@ function App() {
         <Route path="/product/:id" element={<Detail/>}/>
         <Route path="*" element={<NotFound/>}/>
         <Route path="/alumnos/" element={<NavAlumnos/>}/>
+        {/* <Route path="/profesores/" element={<NavProfesores/>}/> */}
+
         <Route path="/alumnos/list" element={<ListAlumnos/>}/>
         <Route path="/alumnos/add" element={<AddAlumno/>}/>
       </Routes>

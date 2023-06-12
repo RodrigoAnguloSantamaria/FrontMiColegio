@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios";
 import { API } from "../../services/api"
+import { useForm, useFormState } from "react-hook-form";
 import "./alumnos.css"
+
+
 
 
 // objeto inicial para controlar estado del formulario 
@@ -11,8 +15,8 @@ const initial_state={
     curso:[],
     profesores:[],
     asignaturas:[],
-    contacto1:"",
-    contacto2:"",
+    correo:"",
+    telefono:"",
     foto:""
 
 }
@@ -26,6 +30,7 @@ const AddAlumno = () => {
         const [asignaturas,setAsignaturas]=useState([]);
         const [profesores,setProfesores]=useState([]);
         const [formState, setFormState] = useState(initial_state);
+        const { register, handleSubmit, getValues } = useForm();
 
             // conttolar el estado de los inputs
         const handleInput =(event)=>{
@@ -132,28 +137,67 @@ const AddAlumno = () => {
             setFormState(initial_state)
         }
 
-        const handleClick=(event)=>{
-            event.preventDefault();
-            console.log(formState)
-            // API.post("/alumnos", formState)
-            // .then((res)=>{
-            //     console.log(res.data)
-            // })
+        const handleClick=  ()=>{
+           // event.preventDefault();
+           // console.log(data) // este log da el file del input type=file del formulario
+            // let newContacto=[];
+            // newContacto.push(formState.contacto1,formState.contacto2)
+          
+            // let newAlumno = new FormData();
+            // newAlumno.append("nombre", formState.nombre);
+            // newAlumno.append("apellidos",formState.apellidos);
+            // newAlumno.append("edad",formState.edad);
+           
+            // newAlumno.append("curso",formState.curso);
+            // newAlumno.append("profesores",formState.profesores);
+            // newAlumno.append("asignaturas",formState.asignaturas);
+            // newAlumno.append("contacto",newContacto);
+           
+            // newAlumno.append("foto", getValues("file")[0]);
+            // for (var key of newAlumno.entries()) {
+            //     console.log(key[0] + ', ' + key[1]);
+            // }
+           
+
+
+        //    console.log(newAlumno)
+        //     console.log(formState)
+        //     API.post("/alumnos", newAlumno,{
+               
+        //     })
+        //     .then((res)=>{
+        //         console.log(res.data)
+        //     })
+        //   .catch(function (error) {
+        //         console.log(error);
+        //    });
+        
+            axios.post("http://localhost:5800/alumnos",formState)
+              .then((response) => {
+                //setResponse(response.data)
+                console.log(response.data)
+              })
+              .catch(function (error) {
+                console.log(error);
+           });
         }
   
   return (
+    //<form className='c-alumnos__form' onSubmit={(event)=>event.preventDefault}>
     <form className='c-alumnos__form' onSubmit={(event)=>event.preventDefault}>
+   
       <label htmlFor="name"> Nombre:<input id="name" name="nombre" type="text" onChange={handleInput}/> </label>
       <label htmlFor="apellidos"> Apellidos:<input id="apellidos" name="apellidos" type="text" onChange={handleInput}/></label>
       <label htmlFor="edad"> Edad:<input id="apellidos" name="edad" type="number" onChange={handleInput}/></label>
-      <label htmlFor="phone"> Telefono:<input id="phone" name="contacto1" type="text" onChange={handleInput}/> </label>
-      <label htmlFor="email"> Email:<input id="email" name="contacto2" type="text" onChange={handleInput}/> </label>
+      <label htmlFor="telefono"> Telefono:<input id="telefono" name="telefono" type="text" onChange={handleInput}/> </label>
+      <label htmlFor="correo"> Email:<input id="correo" name="correo" type="text" onChange={handleInput}/> </label>
       <select className='c-alumnos__select' name="curso" onChange={handleSelect}><option>Curso:</option>{curso}</select>
       <h4>Asignaturas:</h4>
       <label htmlFor='asignaturas' className='c-alumnos__asignaturas'>{asignatura}</label>
       <h4>Profesores:</h4>
       <label htmlFor='profesores' className='c-alumnos__asignaturas'>{profesor}</label>
-      <label htmlFor='foto'>Foto:<input type="file" name="foto"/></label>
+      <label htmlFor='foto'>Foto:<input type="file" name="foto" {...register("file")}/></label>
+      {/* <input type="submit" value="Enviar" onClick={handleClick}/> */}
       <input type="submit" value="Enviar" onClick={handleClick}/>
       <input type="button" value="Resetear" onClick={handleCancel}/>
     </form>

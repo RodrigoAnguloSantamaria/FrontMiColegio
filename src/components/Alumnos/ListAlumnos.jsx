@@ -20,13 +20,14 @@ useEffect(()=>{
 
 const item = dataAlumnos.map((alumn,i)=>{
   console.log(alumn.curso[0])
-    
+  
 
     return (
       <li key={i} className="c-alumnos__li">
-        <h3>{alumn.nombre} {alumn.apellidos}</h3>
-        <p>{alumn.edad}</p>
-        {/* <p>Curso: {alumn.curso[0].nombre}</p> */}
+        <h3>Nombre: {alumn.nombre} {alumn.apellidos}</h3>
+        <p>Edad: {alumn.edad}</p>
+        <p>Curso: {alumn.curso[0] ? alumn.curso[0].nombre : ""}</p>
+        <p>Contacto: {alumn.telefono} - {alumn.correo}</p>
       </li>
     )
 })
