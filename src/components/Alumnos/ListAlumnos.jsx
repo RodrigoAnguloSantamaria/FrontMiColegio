@@ -19,15 +19,15 @@ useEffect(()=>{
 //console.log(dataAlumnos)
 
 const item = dataAlumnos.map((alumn,i)=>{
-  console.log(alumn.curso[0])
-  
-
+ //console.log(alumn)
     return (
       <li key={i} className="c-alumnos__li">
+        <Link to={`/alumnos/${alumn._id}`}>
         <h3>Nombre: {alumn.nombre} {alumn.apellidos}</h3>
         <p>Edad: {alumn.edad}</p>
         <p>Curso: {alumn.curso[0] ? alumn.curso[0].nombre : ""}</p>
         <p>Contacto: {alumn.telefono} - {alumn.correo}</p>
+        </Link>
       </li>
     )
 })

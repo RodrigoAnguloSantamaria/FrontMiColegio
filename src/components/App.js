@@ -7,8 +7,9 @@ import Contact from './Contact/Contact';
 import NotFound from "./NotFound"
 import Detail from './Detail/Detail';
 import NavAlumnos from './NavAlumnos/NavAlumnos'
-import ListAlumnos from './Alumnos/ListAlumnos';
-import AddAlumno from './Alumnos/AddAlumno';
+import AddAlumno from "./Alumnos/AddAlumno"
+import ListAlumnos from "./Alumnos/ListAlumnos"
+import Alumno from './Alumnos/Alumno';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
         <Route path="/alumnos/list" element={<ListAlumnos/>}/>
         <Route path="/alumnos/add" element={<AddAlumno/>}/>
+        <Route path="/alumnos/:id" element={<Alumno/>}/>
       </Routes>
     </div>
   );

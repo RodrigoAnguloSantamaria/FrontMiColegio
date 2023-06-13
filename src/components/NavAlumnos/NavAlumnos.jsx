@@ -14,12 +14,13 @@ const NavAlumnos = () => {
                 <li><Link to="/alumnos/delete">Borrar alumno</Link></li>
 
             </ul>
-        </nav>
-        <Routes>
+            </nav>
+        {/* <Routes>
             <Route path="/add" element={<AddAlumno/>}/>
-            <Route path="/alumnos/list" element={<ListAlumnos/>}/>
+            <Route path="/alumnos/list/" element={<ListAlumnos/>}/>
 
-        </Routes>
+        </Routes> */}
+        
         </>
     )
 }
