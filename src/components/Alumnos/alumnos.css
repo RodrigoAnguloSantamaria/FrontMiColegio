@@ -35,3 +35,8 @@
     flex-direction: column;
     justify-content: center;
 }
+.c-alumnos__img{
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+}

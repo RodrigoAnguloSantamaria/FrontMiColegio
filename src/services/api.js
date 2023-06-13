@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export const APIHeaders ={
-    Accept:"application/json",
-    "Content-type":"application/json",
+    Accept:"*",
+    // "Content-type":"application/json",
+    'Content-type': 'multipart/form-data',
     Autorization: "token"
 };
 

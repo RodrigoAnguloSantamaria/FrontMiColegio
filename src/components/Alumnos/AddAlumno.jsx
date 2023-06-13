@@ -16,8 +16,8 @@ const initial_state={
     profesores:[],
     asignaturas:[],
     correo:"",
-    telefono:"",
-    foto:""
+    telefono:0,
+    foto: ""
 
 }
 
@@ -35,10 +35,17 @@ const AddAlumno = () => {
             // conttolar el estado de los inputs
         const handleInput =(event)=>{
             const {name, value} = event.target
-        
+            
         
             setFormState({...formState, [name]:value})
 
+        }
+        const handleInputImg = (ev) => {
+            const value = ev.target.files[0];
+            const {name} = ev.target;
+            
+            setFormState({...formState, [name]: value})
+             
         }
 
             // controlar el estado del select
@@ -138,53 +145,52 @@ const AddAlumno = () => {
         }
 
         const handleClick=  ()=>{
-           // event.preventDefault();
-           // console.log(data) // este log da el file del input type=file del formulario
-            // let newContacto=[];
-            // newContacto.push(formState.contacto1,formState.contacto2)
-          
-            // let newAlumno = new FormData();
-            // newAlumno.append("nombre", formState.nombre);
-            // newAlumno.append("apellidos",formState.apellidos);
-            // newAlumno.append("edad",formState.edad);
+        //   event.preventDefault();
+        //    console.log(data) // este log da el file del input type=file del formulario
+        //     let newContacto=[];
+        //     newContacto.push(formState.contacto1,formState.contacto2)
+       console.log(formState)
+            let newAlumno = new FormData();
+            newAlumno.append("nombre", formState.nombre);
+            newAlumno.append("apellidos",formState.apellidos);
+            newAlumno.append("edad",formState.edad);
            
-            // newAlumno.append("curso",formState.curso);
-            // newAlumno.append("profesores",formState.profesores);
-            // newAlumno.append("asignaturas",formState.asignaturas);
-            // newAlumno.append("contacto",newContacto);
+            newAlumno.append("curso",formState.curso);
+            newAlumno.append("profesores",formState.profesores);
+            newAlumno.append("asignaturas",formState.asignaturas);
+            newAlumno.append("correo",formState.correo);
+            newAlumno.append("telefono",formState.telefono);
            
-            // newAlumno.append("foto", getValues("file")[0]);
-            // for (var key of newAlumno.entries()) {
-            //     console.log(key[0] + ', ' + key[1]);
-            // }
+            newAlumno.append("foto", formState.foto);
+           
            
 
 
-        //    console.log(newAlumno)
-        //     console.log(formState)
-        //     API.post("/alumnos", newAlumno,{
+            // console.log(newAlumno)
+            console.log(formState.foto)
+            API.post("/alumnos", newAlumno,{
                
-        //     })
-        //     .then((res)=>{
-        //         console.log(res.data)
-        //     })
-        //   .catch(function (error) {
-        //         console.log(error);
-        //    });
-        
-            axios.post("http://localhost:5800/alumnos",formState)
-              .then((response) => {
-                //setResponse(response.data)
-                console.log(response.data)
-              })
-              .catch(function (error) {
+            })
+            .then((res)=>{
+                console.log(res.data)
+            })
+          .catch(function (error) {
                 console.log(error);
            });
+        
+        //     axios.post("http://localhost:5800/alumnos",formState)
+        //       .then((response) => {
+        //         //setResponse(response.data)
+        //         console.log(response.data)
+        //       })
+        //       .catch(function (error) {
+        //         console.log(error);
+        //    });
         }
   
   return (
     //<form className='c-alumnos__form' onSubmit={(event)=>event.preventDefault}>
-    <form className='c-alumnos__form' onSubmit={(event)=>event.preventDefault}>
+    <form className='c-alumnos__form' onSubmit={(event)=>event.preventDefault()}>
    
       <label htmlFor="name"> Nombre:<input id="name" name="nombre" type="text" onChange={handleInput}/> </label>
       <label htmlFor="apellidos"> Apellidos:<input id="apellidos" name="apellidos" type="text" onChange={handleInput}/></label>
@@ -196,7 +202,7 @@ const AddAlumno = () => {
       <label htmlFor='asignaturas' className='c-alumnos__asignaturas'>{asignatura}</label>
       <h4>Profesores:</h4>
       <label htmlFor='profesores' className='c-alumnos__asignaturas'>{profesor}</label>
-      <label htmlFor='foto'>Foto:<input type="file" name="foto" {...register("file")}/></label>
+      <label htmlFor='foto'>Foto:<input type="file" name="foto" onChange={handleInputImg}/></label>
       {/* <input type="submit" value="Enviar" onClick={handleClick}/> */}
       <input type="submit" value="Enviar" onClick={handleClick}/>
       <input type="button" value="Resetear" onClick={handleCancel}/>
